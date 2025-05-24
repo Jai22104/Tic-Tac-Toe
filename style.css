@@ -1,0 +1,158 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    transition: background-color 0.5s ease;
+    color: white;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px #000000aa;
+}
+
+#game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scoreboard {
+    display: flex;
+    gap: 20px;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.scoreboard .score {
+    transition: color 0.3s ease;
+}
+
+.scoreboard .score.blink {
+    animation: blink 1s step-start 0s infinite;
+    color: #ffd700;
+    text-shadow: 0 0 10px #ffd700;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    color: #222;
+}
+
+.cell.x {
+    color: #d32f2f;
+}
+
+.cell.o {
+    color: #1976d2;
+}
+
+.cell.winning-cell {
+    animation: glowScale 1s ease infinite alternate;
+    box-shadow: 0 0 15px 5px #ffd700;
+    border-color: #ffd700;
+}
+
+@keyframes glowScale {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px 3px #ffd700;
+    }
+    100% {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px 8px #ffea00;
+    }
+}
+
+.status {
+    font-size: 24px;
+    margin-bottom: 10px;
+    transition: color 0.5s ease;
+    color: white;
+}
+
+.status.win {
+    color: #4caf50;
+    font-weight: bold;
+    text-shadow: 0 0 8px #4caf50;
+}
+
+.status.lose {
+    color: #f44336;
+    font-weight: bold;
+    text-shadow: 0 0 8px #f44336;
+}
+
+.status.draw {
+    color: #ff9800;
+    font-weight: bold;
+    text-shadow: 0 0 8px #ff9800;
+}
+
+#restartButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #1976d2;
+    color: white;
+    box-shadow: 0 4px 6px rgba(25, 118, 210, 0.4);
+    transition: background-color 0.3s ease;
+}
+
+#restartButton:hover {
+    background-color: #1565c0;
+}
+
+.board.lose-shake {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-10px); }
+    40%, 80% { transform: translateX(10px); }
+}
